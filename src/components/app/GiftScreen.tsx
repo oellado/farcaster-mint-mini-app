@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { type NFT } from "../../config";
 
 const NEYNAR_API_KEY = "30558204-7AF3-44A6-9756-D14BBB60F5D2";
 
