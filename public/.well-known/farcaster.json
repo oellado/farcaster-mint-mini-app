@@ -1,17 +1,23 @@
 {
   "accountAssociation": {
-    "header": "eyJmaWQiOjM2MjEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgyY2Q4NWEwOTMyNjFmNTkyNzA4MDRBNkVBNjk3Q2VBNENlQkVjYWZFIn0",
-    "payload": "eyJkb21haW4iOiJtaW50LWRlbW8ucmVwbGl0LmFwcCJ9",
-    "signature": "MHhkYTczYjA4MjQ4NmU5NWRjNTJkMjExNTg4NzVhMzA0ZDg2NzBhYTk4YzlhYjdmNDViZWMwZmQzM2M4ZTU4OTQ5MTgzODllYjllMmQ2M2IyZGFkMDM5NDRiYzAzZDA2YjkyYTcxNjZiMmM2ZDA5YmZlZjFkOThjZGI2MGFhYzc2YTFj"
+    "header": "eyJmaWQiOjMyMzI1MSwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDk1MjhkMDUwN2Q3MzNGRUFkRThkNWY2M2QwQTJlNzAxNjQ2NjkwNkIifQ",
+    "payload": "eyJkb21haW4iOiJmYy5taWd1ZWxnYXJlc3QuY29tIn0",
+    "signature": "MHg1ZDc1MDk3ZTEwY2FmNWIwNDkzNjgzOTQ5ZWNiZjIzMmJlODllYzEwNmE4ODhhNDQ3NTE1OGU3OGEzYWQ1OWZlNjUyZWMwNTkyNjYwOGYzYzVjMGFjYWNjYTE4M2JkNzFkNGYxODdmZmYxZjI3MTNhNGYxZDEwNjcwMzgyYTFmZTFi"
   },
   "frame": {
     "version": "1",
-    "name": "Mint Demo",
-    "iconUrl": "https://mint-demo.replit.app/icon.png",
-    "homeUrl": "https://mint-demo.replit.app/",
-    "imageUrl": "https://mint-demo.replit.app/nft.png",
-    "buttonTitle": "Mint",
-    "splashImageUrl": "https://mint-demo.replit.app/icon.png",
-    "splashBackgroundColor": "#eeccff"
+    "name": "Daily Vibes",
+    "iconUrl": "https://fc.miguelgarest.com/fc/icon2.png",
+    "homeUrl": "https://fc.miguelgarest.com",
+    "imageUrl": "https://fc.miguelgarest.com/fc/icon.png",
+    "buttonTitle": "Try me!",
+    "splashImageUrl": "https://fc.miguelgarest.com/fc/splash.png",
+    "splashBackgroundColor": "#DCE5FF",
+    "subtitle": "Find a vibe to guide your day",
+    "description": "Share random vibes and brighten your day.",
+    "screenshotUrls": [
+      "https://fc.miguelgarest.com/fc/screen1.png",
+      "https://fc.miguelgarest.com/fc/screen2.png"
+    ]
   }
 }

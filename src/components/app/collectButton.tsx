@@ -12,12 +12,15 @@ import { Button } from "../ui/button";
 interface CollectButtonProps {
   timestamp?: number;
   priceEth: string;
+  vectorId: number;
   onCollect: () => void;
   onError: (error: string | undefined) => void;
   isMinting: boolean;
+  name: string;
+  imageUrl: string;
 }
 
-export function CollectButton({ priceEth, onCollect, onError, isMinting }: CollectButtonProps) {
+export function CollectButton({ priceEth, vectorId, onCollect, onError, isMinting, name, imageUrl }: CollectButtonProps) {
   const { isConnected, address } = useAccount();
   const { connect } = useConnect();
   const { writeContractAsync, isPending: isWriting } = useWriteContract();
@@ -62,7 +65,7 @@ export function CollectButton({ priceEth, onCollect, onError, isMinting }: Colle
         address: contractConfig.address,
         abi: contractConfig.abi,
         functionName: "vectorMint721",
-        args: [BigInt(contractConfig.vectorId), 1n, address],
+        args: [BigInt(vectorId), 1n, address],
         value: parseEther(priceEth),
         chainId: contractConfig.chain.id,
       });
@@ -79,27 +82,59 @@ export function CollectButton({ priceEth, onCollect, onError, isMinting }: Colle
     }
   };
 
+  const handleShare = async () => {
+    try {
+      await sdk.actions.composeCast({
+        text: `${name}\n\nMint yours: https://warpcast.com/miniapps/F3EoBj27HyTd/daily-vibes`,
+        embeds: [
+          imageUrl,
+          "https://warpcast.com/miniapps/F3EoBj27HyTd/daily-vibes"
+        ]
+      });
+    } catch (error) {
+      console.error("Error sharing to Warpcast:", error);
+    }
+  };
+
   return (
     <div className="sticky bottom-0 left-0 right-0 bg-card border-t border-border">
       <div className="pb-4 px-4 pt-2">
         {isMinting && (
           <div className="flex justify-between items-center mb-1 text-sm">
             <span className="text-muted text-sm">Cost</span>
-            <span className="text-foreground font-medium">{priceEth} ETH</span>
+            <div className="text-right">
+              <span className="text-foreground font-medium">{priceEth} ETH</span>
+              <span className="text-muted text-xs ml-2">(~$1 USD)</span>
+            </div>
           </div>
         )}
 
-        {isPending ? (
-          <AnimatedBorder>
-            <Button className="w-full relative bg-[var(--color-active)] text-[var(--color-active-foreground)]" disabled>
-              {isMinting ? "Collecting..." : "Adding..."}
+        <div className="flex gap-4">
+          {isPending ? (
+            <div className="flex-1">
+              <AnimatedBorder>
+                <Button className="w-full relative bg-[#A8B0CD] text-white" disabled>
+                  {isMinting ? "Collecting..." : "Adding..."}
+                </Button>
+              </AnimatedBorder>
+            </div>
+          ) : (
+            <Button 
+              className="flex-1 bg-[#A8B0CD] text-white hover:bg-[#9BA3C0]" 
+              onClick={handleClick} 
+              disabled={isPending}
+            >
+              {!isConnected && isMinting ? "Connect" : isMinting ? "Collect" : "Add Frame"}
             </Button>
-          </AnimatedBorder>
-        ) : (
-          <Button className="w-full" onClick={handleClick} disabled={isPending}>
-            {!isConnected && isMinting ? "Connect" : isMinting ? "Collect" : "Add Frame"}
+          )}
+          
+          <Button 
+            className="flex-1 bg-[#A8B0CD] text-white hover:bg-[#9BA3C0]" 
+            onClick={handleShare}
+          >
+            Share
           </Button>
-        )}
+        </div>
       </div>
     </div>
   );

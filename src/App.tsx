@@ -184,9 +184,12 @@ function App() {
                   <CollectButton
                     key={`collect-${selectedNft.id}`}
                     priceEth={selectedNft.priceEth}
+                    vectorId={selectedNft.vectorId}
                     isMinting={true}
                     onCollect={handleMintSuccess}
                     onError={setError}
+                    name={selectedNft.name}
+                    imageUrl={selectedNft.imageUrl}
                   />
                 </div>
               </ArtworkCard>

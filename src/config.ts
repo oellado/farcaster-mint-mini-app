@@ -13,6 +13,7 @@ export interface NFT {
   };
   chain: string;
   priceEth: string;
+  vectorId: number;
 }
 
 /**
@@ -35,6 +36,7 @@ export const nftCollection = {
       },
       chain: "Base",
       priceEth: "0.0004",
+      vectorId: 6506,
     },
     {
       id: 2,
@@ -48,6 +50,7 @@ export const nftCollection = {
       },
       chain: "Base",
       priceEth: "0.0004",
+      vectorId: 6507,
     },
     {
       id: 3,
@@ -61,6 +64,7 @@ export const nftCollection = {
       },
       chain: "Base",
       priceEth: "0.0004",
+      vectorId: 6508,
     },
     {
       id: 4,
@@ -74,6 +78,7 @@ export const nftCollection = {
       },
       chain: "Base",
       priceEth: "0.0004",
+      vectorId: 6509,
     },
     {
       id: 5,
@@ -87,6 +92,7 @@ export const nftCollection = {
       },
       chain: "Base",
       priceEth: "0.0004",
+      vectorId: 6510,
     },
   ] as NFT[],
 } as const;
@@ -144,7 +150,6 @@ export const contractConfig = {
       type: "event",
     },
   ] as const as Abi,
-  vectorId: 6506,
   referrer: "0x075b108fC0a6426F9dEC9A5c18E87eB577D1346a" as Address,
 } as const;
 
