@@ -94,7 +94,7 @@ export function CollectButton({
     try {
       await sdk.actions.composeCast({
         text: `${description}\n\nMint yours: https://fc.miguelgarest.com?nft=${name.split('#')[1]}`,
-        embeds: []
+        embeds: [`https://fc.miguelgarest.com?nft=${name.split('#')[1]}`]
       });
     } catch (error) {
       console.error("Error sharing to Warpcast:", error);

@@ -106,7 +106,7 @@ function App() {
     try {
       await sdk.actions.composeCast({
         text: `${nft.description}\n\nMint yours: https://fc.miguelgarest.com?nft=${nft.id}`,
-        embeds: []
+        embeds: [`https://fc.miguelgarest.com?nft=${nft.id}`]
       });
     } catch (error) {
       console.error("Error sharing to Warpcast:", error);
