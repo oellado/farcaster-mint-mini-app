@@ -26,7 +26,7 @@ export default defineConfig({
         const previewHandler: Connect.HandleFunction = (req, res) => {
           try {
             const url = new URL(req.url!, `http://${req.headers.host}`);
-            const nftId = url.searchParams.get('id');
+            const nftId = url.searchParams.get('nft');
             
             // If no ID provided, use the default icon
             if (!nftId) {
