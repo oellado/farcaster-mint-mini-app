@@ -18,9 +18,10 @@ interface CollectButtonProps {
   isMinting: boolean;
   name: string;
   imageUrl: string;
+  description: string;
 }
 
-export function CollectButton({ priceEth, vectorId, onCollect, onError, isMinting, name, imageUrl }: CollectButtonProps) {
+export function CollectButton({ priceEth, vectorId, onCollect, onError, isMinting, name, imageUrl, description }: CollectButtonProps) {
   const { isConnected, address } = useAccount();
   const { connect } = useConnect();
   const { writeContractAsync, isPending: isWriting } = useWriteContract();
@@ -85,11 +86,8 @@ export function CollectButton({ priceEth, vectorId, onCollect, onError, isMintin
   const handleShare = async () => {
     try {
       await sdk.actions.composeCast({
-        text: `${name}\n\nMint yours: https://warpcast.com/miniapps/F3EoBj27HyTd/daily-vibes`,
-        embeds: [
-          imageUrl,
-          "https://warpcast.com/miniapps/F3EoBj27HyTd/daily-vibes"
-        ]
+        text: `${description}\n\nMint yours: https://fc.miguelgarest.com?nft=${name.split('#')[1]}`,
+        embeds: []
       });
     } catch (error) {
       console.error("Error sharing to Warpcast:", error);

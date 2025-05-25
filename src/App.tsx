@@ -1,5 +1,6 @@
 import { sdk } from "@farcaster/frame-sdk";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
 
 import { ArtworkCard } from "./components/app/artworkCard";
 import { CollectButton } from "./components/app/collectButton";
@@ -18,6 +19,7 @@ interface NFTWithQuantity extends NFT {
 }
 
 function App() {
+  const router = useRouter();
   const [isReady, setIsReady] = useState(false);
   const [appState, setAppState] = useState<AppState>("welcome");
   const [currentView, setCurrentView] = useState<View>("mint");
@@ -33,12 +35,23 @@ function App() {
     }))
   );
 
-  // Initialize SDK
+  // Initialize SDK and handle URL parameters
   useEffect(() => {
     const initSDK = async () => {
       try {
         await sdk.actions.ready();
         setIsReady(true);
+
+        // Check for NFT ID in URL
+        const nftId = router.query.nft;
+        if (nftId) {
+          const nft = nftCollection.nfts.find(n => n.id.toString() === nftId);
+          if (nft) {
+            setSelectedNft(nft);
+            setAppState("minting");
+            setCurrentView("mint");
+          }
+        }
       } catch (error) {
         console.error("Failed to initialize SDK:", error);
         // Still set ready to true to show the app
@@ -46,7 +59,7 @@ function App() {
       }
     };
     initSDK();
-  }, []);
+  }, [router.query.nft]);
 
   const handleStart = () => {
     const randomIndex = Math.floor(Math.random() * nftCollection.nfts.length);
@@ -93,11 +106,8 @@ function App() {
     if (!nft) return;
     try {
       await sdk.actions.composeCast({
-        text: nft.description + "\n\nMint yours: https://warpcast.com/miniapps/F3EoBj27HyTd/daily-vibes",
-        embeds: [
-          nft.imageUrl,
-          "https://warpcast.com/miniapps/F3EoBj27HyTd/daily-vibes"
-        ]
+        text: `${nft.description}\n\nMint yours: https://fc.miguelgarest.com?nft=${nft.id}`,
+        embeds: []
       });
     } catch (error) {
       console.error("Error sharing to Warpcast:", error);
@@ -190,6 +200,7 @@ function App() {
                     onError={setError}
                     name={selectedNft.name}
                     imageUrl={selectedNft.imageUrl}
+                    description={selectedNft.description}
                   />
                 </div>
               </ArtworkCard>
