@@ -1,6 +1,5 @@
 import { sdk } from "@farcaster/frame-sdk";
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/router';
 
 import { ArtworkCard } from "./components/app/artworkCard";
 import { CollectButton } from "./components/app/collectButton";
@@ -19,7 +18,6 @@ interface NFTWithQuantity extends NFT {
 }
 
 function App() {
-  const router = useRouter();
   const [isReady, setIsReady] = useState(false);
   const [appState, setAppState] = useState<AppState>("welcome");
   const [currentView, setCurrentView] = useState<View>("mint");
@@ -42,8 +40,9 @@ function App() {
         await sdk.actions.ready();
         setIsReady(true);
 
-        // Check for NFT ID in URL
-        const nftId = router.query.nft;
+        // Check for NFT ID in URL using browser's URL API
+        const urlParams = new URLSearchParams(window.location.search);
+        const nftId = urlParams.get('nft');
         if (nftId) {
           const nft = nftCollection.nfts.find(n => n.id.toString() === nftId);
           if (nft) {
@@ -59,7 +58,7 @@ function App() {
       }
     };
     initSDK();
-  }, [router.query.nft]);
+  }, []); // Only run once on mount
 
   const handleStart = () => {
     const randomIndex = Math.floor(Math.random() * nftCollection.nfts.length);
