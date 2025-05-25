@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { parseEther } from "viem";
 import { useAccount, useConnect, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 
-import { contractConfig } from "../../config";
+import { contractConfig, nftCollection, type NFT } from "../../config";
 import { isUserRejectionError } from "../../lib/errors";
 import { AnimatedBorder } from "../ui/animatedBorder";
 import { Button } from "../ui/button";
@@ -93,9 +93,15 @@ export function CollectButton({
   const handleShare = async () => {
     try {
       const nftId = parseInt(name.split('#')[1]);
+      const nft = nftCollection.nfts.find((n: NFT) => n.id === nftId);
+      if (!nft) return;
+
       await sdk.actions.composeCast({
         text: `${description}\n\nMint yours: https://fc.miguelgarest.com?nft=${nftId}`,
-        embeds: [`https://fc.miguelgarest.com?nft=${nftId}`]
+        embeds: [
+          nft.imageUrl,
+          `https://fc.miguelgarest.com?nft=${nftId}`
+        ]
       });
     } catch (error) {
       console.error("Error sharing to Warpcast:", error);
