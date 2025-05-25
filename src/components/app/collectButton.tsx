@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { parseEther } from "viem";
 import { useAccount, useConnect, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 
-import { contractConfig, mintMetadata } from "../../config";
+import { contractConfig } from "../../config";
 import { isUserRejectionError } from "../../lib/errors";
 import { AnimatedBorder } from "../ui/animatedBorder";
 import { Button } from "../ui/button";
@@ -63,7 +63,7 @@ export function CollectButton({ priceEth, onCollect, onError, isMinting }: Colle
         abi: contractConfig.abi,
         functionName: "vectorMint721",
         args: [BigInt(contractConfig.vectorId), 1n, address],
-        value: parseEther(mintMetadata.priceEth),
+        value: parseEther(priceEth),
         chainId: contractConfig.chain.id,
       });
 

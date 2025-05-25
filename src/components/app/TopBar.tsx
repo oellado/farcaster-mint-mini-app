@@ -29,15 +29,16 @@ export function TopBar({ onViewCollection, onViewMint, currentView }: TopBarProp
   return (
     <div className="h-16 bg-[#A6B0D0] backdrop-blur-sm border-b border-gray-800 fixed top-0 left-0 right-0 z-50">
       <div className="max-w-screen-xl mx-auto px-4 h-full flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center">
           <button
             onClick={onViewMint}
-            className={`text-lg font-semibold ${
-              currentView === "mint" ? "text-black" : "text-white hover:text-gray-200"
-            }`}
+            className="text-lg font-semibold text-white hover:text-gray-200"
           >
             Daily vibes
           </button>
+        </div>
+
+        <div className="flex items-center space-x-4">
           <button
             onClick={onViewCollection}
             className={`text-lg font-semibold ${
@@ -46,9 +47,6 @@ export function TopBar({ onViewCollection, onViewMint, currentView }: TopBarProp
           >
             Collection
           </button>
-        </div>
-
-        <div className="flex items-center">
           {userProfile.pfpUrl ? (
             <img
               src={userProfile.pfpUrl}

@@ -16,26 +16,6 @@ export interface NFT {
 }
 
 /**
- * NFT Metadata Configuration
- */
-export const mintMetadata = {
-  name: "Mini App Mint Demo",
-  description:
-    "A simple example of an onchain action in a Farcaster mini app. Tap the button below to mint this image.",
-  imageUrl: "https://mint-demo.replit.app/nft.png",
-  creator: {
-    name: "horsefacts.eth",
-    fid: 3621,
-    profileImageUrl: "https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/27ebb092-6f26-4397-6027-8c90d909ce00/original",
-  },
-  chain: "Base",
-  priceEth: "0.0004",
-  startsAt: null,
-  endsAt: null,
-  isMinting: true,
-} as const;
-
-/**
  * NFT Collection Configuration
  */
 export const nftCollection = {
@@ -45,8 +25,8 @@ export const nftCollection = {
   nfts: [
     {
       id: 1,
-      name: "Farcaster NFT #1",
-      description: "The first piece in our Farcaster collection",
+      name: "Vibe #1",
+      description: "Today is for movement, get the energy flowing.",
       imageUrl: "https://fc.miguelgarest.com/fc/0.gif",
       creator: {
         name: "Miguelgarest.eth",
@@ -58,8 +38,8 @@ export const nftCollection = {
     },
     {
       id: 2,
-      name: "Farcaster NFT #2",
-      description: "The second piece in our Farcaster collection",
+      name: "Vibe #2",
+      description: "Let loose. Today is made for fun.",
       imageUrl: "https://fc.miguelgarest.com/fc/1.gif",
       creator: {
         name: "Miguelgarest.eth",
@@ -71,8 +51,8 @@ export const nftCollection = {
     },
     {
       id: 3,
-      name: "Farcaster NFT #3",
-      description: "The third piece in our Farcaster collection",
+      name: "Vibe #3",
+      description: "Find your rhythm and let it carry you.",
       imageUrl: "https://fc.miguelgarest.com/fc/2.gif",
       creator: {
         name: "Miguelgarest.eth",
@@ -84,8 +64,8 @@ export const nftCollection = {
     },
     {
       id: 4,
-      name: "Farcaster NFT #4",
-      description: "The fourth piece in our Farcaster collection",
+      name: "Vibe #4",
+      description: "Adventure awaits. Try something new today.",
       imageUrl: "https://fc.miguelgarest.com/fc/3.gif",
       creator: {
         name: "Miguelgarest.eth",
@@ -97,8 +77,8 @@ export const nftCollection = {
     },
     {
       id: 5,
-      name: "Farcaster NFT #5",
-      description: "The fifth piece in our Farcaster collection",
+      name: "Vibe #5",
+      description: "Reach out, someone needs your love today.",
       imageUrl: "https://fc.miguelgarest.com/fc/4.gif",
       creator: {
         name: "Miguelgarest.eth",

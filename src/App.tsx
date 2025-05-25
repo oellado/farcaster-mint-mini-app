@@ -25,12 +25,11 @@ function App() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState<string>();
   
-  // Mock data for minted NFTs - in a real app, this would come from a contract or backend
+  // Real data for minted NFTs - all start at 0, only update on mint
   const [mintedNfts, setMintedNfts] = useState<NFTWithQuantity[]>(
-    nftCollection.nfts.map((nft, index) => ({ 
-      ...nft, 
-      // Add some test editions: first NFT has 2, second has 1, rest have 0
-      quantity: index === 0 ? 2 : index === 1 ? 1 : 0 
+    nftCollection.nfts.map((nft) => ({
+      ...nft,
+      quantity: 0
     }))
   );
 
@@ -91,8 +90,18 @@ function App() {
   };
 
   const handleShareNFT = async (nft: NFTWithQuantity) => {
-    // TODO: Implement Farcaster cast sharing
-    console.log("Share NFT:", nft);
+    if (!nft) return;
+    try {
+      await sdk.actions.composeCast({
+        text: nft.description + "\n\nMint yours: https://warpcast.com/miniapps/F3EoBj27HyTd/daily-vibes",
+        embeds: [
+          nft.imageUrl,
+          "https://warpcast.com/miniapps/F3EoBj27HyTd/daily-vibes"
+        ]
+      });
+    } catch (error) {
+      console.error("Error sharing to Warpcast:", error);
+    }
   };
 
   if (!isReady) {
@@ -156,7 +165,7 @@ function App() {
         )}
 
         {appState === "minting" && selectedNft && (
-          <div className="absolute inset-0 p-4 overflow-auto">
+          <div className="absolute inset-0 flex items-center justify-center p-4 overflow-auto">
             <div className="max-w-md mx-auto">
               <ArtworkCard
                 key={selectedNft.id}
