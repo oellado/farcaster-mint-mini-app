@@ -1,6 +1,5 @@
 import { sdk } from "@farcaster/frame-sdk";
 import { useEffect, useState } from "react";
-import { nftCollection } from "../../config";
 
 interface TopBarProps {
   onViewCollection: () => void;

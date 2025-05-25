@@ -1,5 +1,3 @@
-import { nftCollection } from "../../config";
-
 interface WelcomeScreenProps {
   onStart: () => void;
 }

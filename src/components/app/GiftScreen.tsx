@@ -4,7 +4,6 @@ import { type NFT } from "../../config";
 const NEYNAR_API_KEY = "30558204-7AF3-44A6-9756-D14BBB60F5D2";
 
 interface GiftScreenProps {
-  nft: NFT;
   onBack: () => void;
   onGift: (recipientFid: number) => void;
 }
@@ -16,7 +15,7 @@ interface FarcasterUser {
   pfpUrl: string;
 }
 
-export function GiftScreen({ nft, onBack, onGift }: GiftScreenProps) {
+export function GiftScreen({ onBack, onGift }: GiftScreenProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<FarcasterUser[]>([]);
   const [isSearching, setIsSearching] = useState(false);
