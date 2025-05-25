@@ -17,11 +17,18 @@ interface CollectButtonProps {
   onError: (error: string | undefined) => void;
   isMinting: boolean;
   name: string;
-  imageUrl: string;
   description: string;
 }
 
-export function CollectButton({ priceEth, vectorId, onCollect, onError, isMinting, name, imageUrl, description }: CollectButtonProps) {
+export function CollectButton({ 
+  priceEth, 
+  vectorId, 
+  onCollect, 
+  onError, 
+  isMinting, 
+  name,
+  description 
+}: CollectButtonProps) {
   const { isConnected, address } = useAccount();
   const { connect } = useConnect();
   const { writeContractAsync, isPending: isWriting } = useWriteContract();

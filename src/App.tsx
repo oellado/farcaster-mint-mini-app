@@ -198,7 +198,6 @@ function App() {
                     onCollect={handleMintSuccess}
                     onError={setError}
                     name={selectedNft.name}
-                    imageUrl={selectedNft.imageUrl}
                     description={selectedNft.description}
                   />
                 </div>
