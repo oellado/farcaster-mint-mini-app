@@ -3,8 +3,17 @@ import { nftCollection } from '../src/config';
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    const nftId = req.query.nft as string;
-    console.log('Preview request for NFT ID:', nftId);
+    // Get NFT ID from referer URL
+    const referer = req.headers.referer;
+    if (!referer) {
+      console.log('No referer, using welcome image');
+      res.redirect(307, nftCollection.welcomeImageUrl);
+      return;
+    }
+
+    const url = new URL(referer);
+    const nftId = url.searchParams.get('nft');
+    console.log('Frame request for NFT ID:', nftId);
     
     // If no ID provided, use the default icon
     if (!nftId) {
@@ -28,7 +37,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     console.log('Redirecting to NFT image:', nft.imageUrl);
     res.redirect(307, nft.imageUrl);
   } catch (error) {
-    console.error('Preview endpoint error:', error);
+    console.error('Frame endpoint error:', error);
     res.status(500).send('Internal Server Error');
   }
 } 

@@ -92,9 +92,10 @@ export function CollectButton({
 
   const handleShare = async () => {
     try {
+      const nftId = parseInt(name.split('#')[1]);
       await sdk.actions.composeCast({
-        text: `${description}\n\nMint yours: https://fc.miguelgarest.com?nft=${name.split('#')[1]}`,
-        embeds: [`https://fc.miguelgarest.com?nft=${name.split('#')[1]}`]
+        text: `${description}\n\nMint yours: https://fc.miguelgarest.com?nft=${nftId}`,
+        embeds: [`https://fc.miguelgarest.com?nft=${nftId}`]
       });
     } catch (error) {
       console.error("Error sharing to Warpcast:", error);
